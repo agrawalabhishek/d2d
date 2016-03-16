@@ -14,6 +14,7 @@
 #include <SQLiteCpp/SQLiteCpp.h>
 
 #include <Astro/astro.hpp>
+#include <Astro/constants.hpp>
 
 #include <libsgp4/Tle.h>
 #include <libsgp4/SGP4.h>
@@ -104,15 +105,6 @@ void fetchSGP4Transfer( const rapidjson::Document& config )
 
     const int sgp4TransferId                        = sgp4Query.getColumn( 0 );
     const int lambertTransferId                     = sgp4Query.getColumn( 1 );
-    const int lambertTransferId                     = sgp4Query.getColumn( 2 );
-    const int lambertTransferId                     = sgp4Query.getColumn( 3 );
-    const int lambertTransferId                     = sgp4Query.getColumn( 4 );
-    const int lambertTransferId                     = sgp4Query.getColumn( 5 );
-    const int lambertTransferId                     = sgp4Query.getColumn( 6 );
-    const int lambertTransferId                     = sgp4Query.getColumn( 7 );
-    const int lambertTransferId                     = sgp4Query.getColumn( 8 );
-    const int lambertTransferId                     = sgp4Query.getColumn( 9 );
-    const int lambertTransferId                     = sgp4Query.getColumn( 10 );
 
     const double sgp4ArrivalPositionX               = sgp4Query.getColumn( 11 );
     const double sgp4ArrivalPositionY               = sgp4Query.getColumn( 12 );
@@ -178,7 +170,7 @@ void fetchSGP4Transfer( const rapidjson::Document& config )
     transferDepartureState[ 5 ] = departureVelocityZ + departureDeltaVZ;
 
     // compute and store transfer state history by sgp4 propagation
-    DateTime transferDepartureEpoch( ( departureEpoch - 1721425.5 ) * TicksPerDay );
+    DateTime transferDepartureEpoch( ( departureEpoch - astro::ASTRO_GREGORIAN_EPOCH_IN_JULIAN_DAYS ) * TicksPerDay );
     Tle transferOrbitTle = atom::convertCartesianStateToTwoLineElements< double, std::vector< double > >( transferDepartureState,
                                                                                                           transferDepartureEpoch );
     std::cout << "transfer Orbit Tle computed successfully!" << std::endl;
