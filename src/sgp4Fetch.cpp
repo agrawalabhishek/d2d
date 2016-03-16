@@ -104,20 +104,31 @@ void fetchSGP4Transfer( const rapidjson::Document& config )
 
     const int sgp4TransferId                        = sgp4Query.getColumn( 0 );
     const int lambertTransferId                     = sgp4Query.getColumn( 1 );
-    const double sgp4ArrivalPositionX               = sgp4Query.getColumn( 2 );
-    const double sgp4ArrivalPositionY               = sgp4Query.getColumn( 3 );
-    const double sgp4ArrivalPositionZ               = sgp4Query.getColumn( 4 );
-    const double sgp4ArrivalVelocityX               = sgp4Query.getColumn( 5 );
-    const double sgp4ArrivalVelocityY               = sgp4Query.getColumn( 6 );
-    const double sgp4ArrivalVelocityZ               = sgp4Query.getColumn( 7 );
-    const double sgp4ArrivalPositionErrorX          = sgp4Query.getColumn( 8 );
-    const double sgp4ArrivalPositionErrorY          = sgp4Query.getColumn( 9 );
-    const double sgp4ArrivalPositionErrorZ          = sgp4Query.getColumn( 10 );
-    const double sgp4ArrivalPositionError           = sgp4Query.getColumn( 11 );
-    const double sgp4ArrivalVelocityErrorX          = sgp4Query.getColumn( 12 );
-    const double sgp4ArrivalVelocityErrorY          = sgp4Query.getColumn( 13 );
-    const double sgp4ArrivalVelocityErrorZ          = sgp4Query.getColumn( 14 );
-    const double sgp4ArrivalVelocityError           = sgp4Query.getColumn( 15 );
+    const int lambertTransferId                     = sgp4Query.getColumn( 2 );
+    const int lambertTransferId                     = sgp4Query.getColumn( 3 );
+    const int lambertTransferId                     = sgp4Query.getColumn( 4 );
+    const int lambertTransferId                     = sgp4Query.getColumn( 5 );
+    const int lambertTransferId                     = sgp4Query.getColumn( 6 );
+    const int lambertTransferId                     = sgp4Query.getColumn( 7 );
+    const int lambertTransferId                     = sgp4Query.getColumn( 8 );
+    const int lambertTransferId                     = sgp4Query.getColumn( 9 );
+    const int lambertTransferId                     = sgp4Query.getColumn( 10 );
+
+    const double sgp4ArrivalPositionX               = sgp4Query.getColumn( 11 );
+    const double sgp4ArrivalPositionY               = sgp4Query.getColumn( 12 );
+    const double sgp4ArrivalPositionZ               = sgp4Query.getColumn( 13 );
+    const double sgp4ArrivalVelocityX               = sgp4Query.getColumn( 14 );
+    const double sgp4ArrivalVelocityY               = sgp4Query.getColumn( 15 );
+    const double sgp4ArrivalVelocityZ               = sgp4Query.getColumn( 16 );
+    const double sgp4ArrivalPositionErrorX          = sgp4Query.getColumn( 17 );
+    const double sgp4ArrivalPositionErrorY          = sgp4Query.getColumn( 18 );
+    const double sgp4ArrivalPositionErrorZ          = sgp4Query.getColumn( 19 );
+    const double sgp4ArrivalPositionError           = sgp4Query.getColumn( 20 );
+    const double sgp4ArrivalVelocityErrorX          = sgp4Query.getColumn( 21 );
+    const double sgp4ArrivalVelocityErrorY          = sgp4Query.getColumn( 22 );
+    const double sgp4ArrivalVelocityErrorZ          = sgp4Query.getColumn( 23 );
+    const double sgp4ArrivalVelocityError           = sgp4Query.getColumn( 24 );
+    const int successTag                            = sgp4Query.getColumn( 25 );   
 
     std::cout << "SGP4 transfer successfully fetched from database!" << std::endl;
 
