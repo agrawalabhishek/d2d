@@ -124,6 +124,9 @@ void fetchSGP4Transfer( const rapidjson::Document& config )
 
     std::cout << "SGP4 transfer successfully fetched from database!" << std::endl;
 
+    std::cout << "SGP4 Trasnfer ID = " << sgp4TransferId << std::endl;
+    std::cout << "Lambert Trasnfer ID = " << lambertTransferId << std::endl;
+
     // select transfer data from the lambert_scanner_results table in database
     std::ostringstream lambertTransferSelect;
     lambertTransferSelect << "SELECT * FROM lambert_scanner_results WHERE transfer_id = "
@@ -174,6 +177,26 @@ void fetchSGP4Transfer( const rapidjson::Document& config )
     Tle transferOrbitTle = atom::convertCartesianStateToTwoLineElements< double, std::vector< double > >( transferDepartureState,
                                                                                                           transferDepartureEpoch );
     std::cout << "transfer Orbit Tle computed successfully!" << std::endl;
+
+    // small sanity check
+    DateTime sgp4TransferArrivalEpoch = transferDepartureEpoch.AddSeconds( timeOfFlight ); 
+    
+    SGP4 transferPathSGP4( transferOrbitTle );
+    
+    Eci sgp4TransferPathInitialStateEci = transferPathSGP4.FindPosition( transferDepartureEpoch );
+    Eci sgp4TransferPathFinalStateEci = transferPathSGP4.FindPosition( sgp4TransferArrivalEpoch );
+
+    Vector6 sgp4TransferPathInitialState = getStateVector( sgp4TransferPathInitialStateEci );
+    Vector6 sgp4TransferPathFinalState = getStateVector( sgp4TransferPathFinalStateEci );
+
+    std::cout << "Printing Initial state of sgp4 propagated transfer path..." << std::endl;
+    for (int i = 0; i < 6; i++ )
+        std::cout << i << "." << '\t' << sgp4TransferPathInitialState[ i ] << std::endl;
+    std::cout << std::endl;
+    std::cout << "Printing final state of sgp4 propagated transfer path..." << std::endl;
+    for (int i = 0; i < 6; i++ )
+        std::cout << i << "." << '\t' << sgp4TransferPathFinalState[ i ] << std::endl;
+    // end of small sanity check
 
     const StateHistory sgp4TransferPath = sampleSGP4Orbit( transferOrbitTle,
                                                            timeOfFlight,
