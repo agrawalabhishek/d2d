@@ -18,7 +18,6 @@
 #include "D2D/lambertFetch.hpp"
 #include "D2D/lambertScanner.hpp"
 #include "D2D/lambertTransfer.hpp"
-#include "D2D/SGP4Scanner.hpp"
 #include "D2D/sgp4Fetch.hpp"
 #include "D2D/tools.hpp"
 
@@ -111,11 +110,6 @@ int main( const int numberOfInputs, const char* inputArguments[ ] )
     {
         std::cout << "Mode:                         " << mode << std::endl;
         d2d::fetchLambertTransfer( config );
-    }
-    else if ( mode.compare( "sgp4_scanner" ) == 0 )
-    {
-        std::cout << "Mode:                         " << mode << std::endl;
-        d2d::executeSGP4Scanner( config );
     }
     else if ( mode.compare( "sgp4_fetch" ) == 0 )
     {
